@@ -89,9 +89,9 @@ Function	Description
 <?php _e('Message'); ?>	return translated text from translate()	
 <?php wp_register(); ?>	register link	
 <?php wp_loginout(); ?>	login/logout link	
-<!--nextpage-->	divide content into pages	
-<!--more-->	cut off content and create link to full post	
+<!--nextpage-->         divide content into pages	
+<!--more-->             cut off content and create link to full post	
 <?php wp_meta(); ?>	admin meta data	
 <?php timer_start(); ?>	start page timer (header.php)	
 <?php timer_stop(1); ?>	time to load the page (footer.php)	
-<?php echo get_num_queries(); ?>	show queries executed to generate page	
+<?php echo get_num_queries(); ?> show queries executed to generate page	
