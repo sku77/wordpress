@@ -1,8 +1,8 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 
 Header Functions
 Function                Description	
@@ -26,18 +26,18 @@ Default Navigation Menu
 <?php wp_nav_menu(); ?>	
 
 Specific Navigation Menu	
-<?php wp_nav_menu( array('menu' => 'Project Nav' )); ?>	
+<?php wp_nav_menu(array('menu' => 'Project Nav')); ?>	
 
 Category Based Navigation	
 <ul id="menu">	
-<li <?php if(is_home()) { ?> class="current-cat" <?php } ?>><a href="<?php bloginfo('home'); ?>">Home</a></li>	
-<?php wp_list_categories('title_li=&orderby=id');?>	
+    <li <?php if (is_home()) { ?> class="current-cat" <?php } ?>><a href="<?php bloginfo('home'); ?>">Home</a></li>	
+    <?php wp_list_categories('title_li=&orderby=id'); ?>	
 </ul>	
 
 Page Based Navigation	
 <ul id="menu">	
-<li <?php if(is_home()) { ?> class="current-page-item" <?php } ?>><a href="<?php bloginfo('home'); ?>">Home</a></li>	
-<?php wp_list_pages('sort_column=menu_order&depth=1&title_li=');?>	
+    <li <?php if (is_home()) { ?> class="current-page-item" <?php } ?>><a href="<?php bloginfo('home'); ?>">Home</a></li>	
+        <?php wp_list_pages('sort_column=menu_order&depth=1&title_li='); ?>	
 </ul>
 
 
@@ -45,10 +45,11 @@ Template Functions
 
 Function                Description	
 <?php the_content(); ?>	content of posts/pages	
-<?php if(have_posts()): ?>	check if there are posts	
-<?php while(have_posts()): the_post(); ?>	shows posts	
-<?php endwhile; ?>	closes loop	
+<?php if (have_posts()): ?>	check if there are posts	
+    <?php while (have_posts()): the_post(); ?>	shows posts	
+    <?php endwhile; ?>	closes loop	
 <?php endif; ?>	closes if	
+
 <?php get_header(); ?>	header.php file contents	
 <?php get_sidebar(); ?>	sidebar.php file contents	
 <?php get_footer(); ?>	footer.php file contents	
@@ -73,11 +74,11 @@ Function                Description
 
 The Loop
 Basic Loop	
-<?php if(have_posts()) { ?>	
-<?php while(have_posts()) { ?>	
-<?php the_post(); ?>	
-<?php // custom post content code for title, excerpt and featured image ?>	
-<?php } // end while ?>	
+<?php if (have_posts()) { ?>	
+    <?php while (have_posts()) { ?>	
+        <?php the_post(); ?>	
+        <?php // custom post content code for title, excerpt and featured image ?>	
+    <?php } // end while ?>	
 <?php } // end if ?>
 
 
@@ -120,7 +121,8 @@ $wp_query->query($args);
 
 <?php wpbeginner_numeric_posts_nav(); ?>
 
-<?php 
+<?php
+
 function wpbeginner_numeric_posts_nav() {
 
     if (is_singular())
@@ -188,4 +190,27 @@ function wpbeginner_numeric_posts_nav() {
 
     echo '</ul></div>' . "\n";
 }
+?>
+
+Search query
+<?php
+global $query_string;
+
+$query_args = explode("&", $query_string);
+$search_query = array();
+$paged = (get_query_var('page')) ? get_query_var('page') : 1;
+foreach ($query_args as $key => $string) {
+    $query_split = explode("=", $string);
+    $search_query[$query_split[0]] = urldecode($query_split[1]);
+}
+$arg = array(
+    's' => $search_query[$query_split[0]],
+    'post_type' => 'car',
+    'post_status' => 'publish',
+    'posts_per_page' => 5,
+    'paged' => $paged,
+    'order' => 'DESC',
+);
+$wp_query = new WP_Query();
+$wp_query->query($arg);
 ?>
