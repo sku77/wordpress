@@ -121,25 +121,28 @@ $wp_query->query($args);
 
 <?php wpbeginner_numeric_posts_nav(); ?>
 
+Pagination function.php 
 <?php
-
 function wpbeginner_numeric_posts_nav() {
 
-    if (is_singular())
+    if (is_singular()) {
         return;
+    }
 
     global $wp_query;
 
     /** Stop execution if there's only 1 page */
-    if ($wp_query->max_num_pages <= 1)
+    if ($wp_query->max_num_pages <= 1) {
         return;
+    }
 
     $paged = get_query_var('page') ? absint(get_query_var('page')) : 1;
     $max = intval($wp_query->max_num_pages);
 
     /** 	Add current page to the array */
-    if ($paged >= 1)
+    if ($paged >= 1) {
         $links[] = $paged;
+    }
 
     /** 	Add the pages around the current page to the array */
     if ($paged >= 3) {
@@ -155,8 +158,9 @@ function wpbeginner_numeric_posts_nav() {
     echo '<div class="navigation"><ul>' . "\n";
 
     /** 	Previous Post Link */
-    if (get_previous_posts_link())
+    if (get_previous_posts_link()) {
         printf('<li>%s</li>' . "\n", get_previous_posts_link());
+    }
 
     /** 	Link to first page, plus ellipses if necessary */
     if (!in_array(1, $links)) {
@@ -164,8 +168,9 @@ function wpbeginner_numeric_posts_nav() {
 
         printf('<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link(1)), '1');
 
-        if (!in_array(2, $links))
+        if (!in_array(2, $links)) {
             echo '<li>…</li>';
+        }
     }
 
     /** 	Link to current page, plus 2 pages in either direction if necessary */
@@ -177,20 +182,35 @@ function wpbeginner_numeric_posts_nav() {
 
     /** 	Link to last page, plus ellipses if necessary */
     if (!in_array($max, $links)) {
-        if (!in_array($max - 1, $links))
+        if (!in_array($max - 1, $links)) {
             echo '<li>…</li>' . "\n";
+        }
 
         $class = $paged == $max ? ' class="active"' : '';
         printf('<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link($max)), $max);
     }
 
     /** 	Next Post Link */
-    if (get_next_posts_link())
+    if (get_next_posts_link()) {
         printf('<li>%s</li>' . "\n", get_next_posts_link());
+    }
 
     echo '</ul></div>' . "\n";
 }
 ?>
+
+Get the current terms from the main loop variable
+
+<?php $terms = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy')); 
+
+array('tax_query' => array(
+        array(
+            'taxonomy' => $terms->taxonomy,
+            'field' => 'id',
+            'terms' => $terms->term_id // Where term_id of Term 1 is "1".
+        )
+    ));
+        ?>
 
 Search query
 <?php
@@ -213,4 +233,29 @@ $arg = array(
 );
 $wp_query = new WP_Query();
 $wp_query->query($arg);
+?>
+
+Theme Style Header
+<?php /*   
+themes Name: Prestige
+themes URI: http://www.exoticcarrentalorlando.com/
+Description: WP themes for ECR Orlando
+Author: ConstantClick.Com
+Author URI: http://www.constantclick.com
+Version: Beta
+*/
+?>
+
+for page template header
+<?php
+/*
+  Template Name: Reservation Page
+ */
+?>
+
+for posts template header
+<?php
+/*
+  Template Name Posts: Car Detail
+ */
 ?>
