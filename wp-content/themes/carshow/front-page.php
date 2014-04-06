@@ -39,7 +39,6 @@ function be_home_loop() {
 
     while ($news->have_posts()): $news->the_post();
         global $post;
-
         echo '<div class="news-item">';
         echo '<div class="thumbnail"><a href="' .
         get_permalink() . '">' .
@@ -107,6 +106,7 @@ function be_home_loop() {
     </div><!-- .content-right -->
     <?php
 }
+
 genesis();
 ?>
 
