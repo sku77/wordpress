@@ -1,9 +1,11 @@
 /*
-        Theme Name: Carshow
-        Description: Child theme of Genesis, by Constant Click.
-        Author: Ezra John Sy
-        Author URI: http://www.constantclick.com
-
-        Template: genesis
-        Template Version: Alpha
+Theme Name: carshow
+Theme URI: http://www.constantclick.com
+Description: Designed by <a href="http://www.constantclick.com">Ezra</a>.
+Author: Ezra Sy
+Version: 0.1
+Template: genesis
+Tags: the child of genesis
+ 
 */
+@import url('../genesis/style.css');
