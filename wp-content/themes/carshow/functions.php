@@ -32,12 +32,15 @@ function child_theme_setup() {
     add_action('genesis_header', 'be_nav_menus');
 }
 
-/** * Remove Metaboxes * This removes unused or unneeded metaboxes from Genesis > Theme Settings. See /genesis/lib/admin/theme-settings.php for all metaboxes. * */
+/** * Remove Metaboxes *
+ *  This removes unused or unneeded metaboxes from Genesis > Theme Settings. 
+ * See /genesis/lib/admin/theme-settings.php for all metaboxes. * */
 function be_remove_metaboxes($_genesis_theme_settings_pagehook) {
     remove_meta_box('genesis-theme-settings-nav', $_genesis_theme_settings_pagehook, 'main');
 }
 
-/** * Add Nav Menus to Header * */ function be_nav_menus() {
+/** * Add Nav Menus to Header * */
+function be_nav_menus() {
     echo '<div class="menus"><div class="primary">';
     wp_nav_menu(array('menu' => 'Primary'));
     echo '</div><!-- .primary --><div class="secondary">';
