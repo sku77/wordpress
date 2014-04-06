@@ -182,4 +182,10 @@ function wpbeginner_numeric_posts_nav() {
     echo '</ul></div>' . "\n";
 }
 
+add_theme_support( 'menus' );
+
+function register_menu() {
+	register_nav_menu('primary-menu', __('Primary Menu'));
+}
+add_action('init', 'register_menu');
 ?>
