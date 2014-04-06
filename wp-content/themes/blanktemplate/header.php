@@ -63,13 +63,15 @@
             </div>
             <div id="nav">
                 <?php
-                /* Primary navigation */
                 wp_nav_menu(array(
-                    'menu' => 'top_menu',
+                    'menu' => 'primary',
+                    'theme_location' => 'primary',
                     'depth' => 2,
-                    'container' => false,
-                    'menu_class' => 'nav',
-                    //Process nav menu using our custom nav walker
+                    'container' => 'div',
+                    'container_class' => 'collapse navbar-collapse',
+                    'container_id' => 'bs-example-navbar-collapse-1',
+                    'menu_class' => 'nav navbar-nav',
+                    'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
                     'walker' => new wp_bootstrap_navwalker())
                 );
                 ?>

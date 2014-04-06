@@ -184,26 +184,9 @@ function wpbeginner_numeric_posts_nav() {
     echo '</ul></div>' . "\n";
 }
 
-add_action('after_setup_theme', 'wpt_setup');
-if (!function_exists('wpt_setup')):
+add_action('after_setup_theme', 'register_my_menus');
 
-    function wpt_setup() {
-        register_nav_menu('primary', __('Primary navigation', 'main navigation'));
-    }
-
-endif;
-
-function wpt_register_js() {
-    wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/asset/js/bootstrap.js', 'jquery');
-    wp_enqueue_script('jquery.bootstrap');
-}
-
-add_action('init', 'wpt_register_js');
-
-function wpt_register_css() {
-    wp_register_style('bootstrap.min', get_template_directory_uri() . '/asset/css/bootstrap.min.css');
-    wp_enqueue_style('bootstrap.min');
-}
-
-add_action('wp_enqueue_scripts', 'wpt_register_css');
+register_nav_menus(array(
+    'primary' => __('Primary Menu', 'THEMENAME'),
+));
 ?>
