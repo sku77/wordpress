@@ -1,5 +1,8 @@
 <?php
 
+// Register Custom Navigation Walker
+require_once('wp_bootstrap_navwalker.php');
+
 // Add RSS links to <head> section
 automatic_feed_links();
 
@@ -94,7 +97,6 @@ add_action('widgets_init', 'secondary_sidebar');
  * @param array $post_types An array of post type names that the templates be used by
  * @return array The array of post type names that the templates be used by
  * */
-
 function my_cpt_post_types($post_types) {
     $post_types[] = 'faq';
     $post_types[] = 'car';
@@ -182,10 +184,26 @@ function wpbeginner_numeric_posts_nav() {
     echo '</ul></div>' . "\n";
 }
 
-add_theme_support( 'menus' );
+add_action('after_setup_theme', 'wpt_setup');
+if (!function_exists('wpt_setup')):
 
-function register_menu() {
-	register_nav_menu('primary-menu', __('Primary Menu'));
+    function wpt_setup() {
+        register_nav_menu('primary', __('Primary navigation', 'main navigation'));
+    }
+
+endif;
+
+function wpt_register_js() {
+    wp_register_script('jquery.bootstrap.min', get_template_directory_uri() . '/asset/js/bootstrap.js', 'jquery');
+    wp_enqueue_script('jquery.bootstrap');
 }
-add_action('init', 'register_menu');
+
+add_action('init', 'wpt_register_js');
+
+function wpt_register_css() {
+    wp_register_style('bootstrap.min', get_template_directory_uri() . '/asset/css/bootstrap.min.css');
+    wp_enqueue_style('bootstrap.min');
+}
+
+add_action('wp_enqueue_scripts', 'wpt_register_css');
 ?>
