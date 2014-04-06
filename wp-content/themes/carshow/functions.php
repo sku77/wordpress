@@ -15,7 +15,7 @@ require_once( TEMPLATEPATH . '/lib/init.php' );
 /**
  * Theme Setup
  *
- * This setup function attaches all of the site-wide functions 
+ * This setup function attaches all of the site-wide functions
  * to the correct actions and filters. All the functions themselves
  * are defined below this setup function.
  *
@@ -23,17 +23,17 @@ require_once( TEMPLATEPATH . '/lib/init.php' );
 add_action('genesis_setup', 'child_theme_setup', 15);
 
 function child_theme_setup() {
-// ** Backend ** 
-// Remove Metaboxes 
+// ** Backend **
+// Remove Metaboxes
     add_action('genesis_theme_settings_metaboxes', 'be_remove_metaboxes');
 
-// ** Frontend ** // 
-// Add Nav to Header 
+// ** Frontend ** //
+// Add Nav to Header
     add_action('genesis_header', 'be_nav_menus');
 }
 
 /** * Remove Metaboxes *
- *  This removes unused or unneeded metaboxes from Genesis > Theme Settings. 
+ *  This removes unused or unneeded metaboxes from Genesis > Theme Settings.
  * See /genesis/lib/admin/theme-settings.php for all metaboxes. * */
 function be_remove_metaboxes($_genesis_theme_settings_pagehook) {
     remove_meta_box('genesis-theme-settings-nav', $_genesis_theme_settings_pagehook, 'main');
