@@ -24,8 +24,9 @@ add_action('genesis_setup', 'child_theme_setup', 15);
 
 function child_theme_setup() {
 // ** Backend ** 
-// // Remove Metaboxes 
+// Remove Metaboxes 
     add_action('genesis_theme_settings_metaboxes', 'be_remove_metaboxes');
+
 // ** Frontend ** // 
 // Add Nav to Header 
     add_action('genesis_header', 'be_nav_menus');
