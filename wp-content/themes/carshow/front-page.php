@@ -41,8 +41,16 @@ function be_home_loop() {
         global $post;
 
         echo '<div class="news-item">';
-        echo '<div class="thumbnail"><a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, 'thumbnail') . '</a></div>';
-        echo '<div class="content"><span class="date">' . get_the_date() . '</span><a href="' . get_permalink() . '">' . get_the_title() . '</a></div><!-- .content -->';
+        echo '<div class="thumbnail"><a href="' .
+        get_permalink() . '">' .
+        get_the_post_thumbnail($post->ID, 'thumbnail') .
+        '</a></div>';
+        echo '<div class="content"><span class="date">' .
+        get_the_date() .
+        '</span><a href="' .
+        get_permalink() . '">' .
+        get_the_title() .
+        '</a></div><!-- .content -->';
         echo '</div><!-- .news-item -->';
     endwhile;
     wp_reset_query();
@@ -51,8 +59,10 @@ function be_home_loop() {
     dynamic_sidebar('home-sidebar');
     ?>
 
-    <div class="events-links-entry"> <div class="entry-header">
-            <p class="col-1">Events</p> <p class="col-2">Popular Links</p>
+    <div class="events-links-entry"> 
+        <div class="entry-header">
+            <p class="col-1">Events</p> 
+            <p class="col-2">Popular Links</p>
         </div><!-- /entry-header -->
         <div class="entry-content">
             <?php
@@ -70,13 +80,16 @@ function be_home_loop() {
 
             if ($events->have_posts()): echo '<ul class="col-1">';
                 while ($events->have_posts()): $events->the_post();
-                    echo '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+                    echo '<li><a href="' .
+                    get_permalink() .
+                    '">' .
+                    get_the_title() .
+                    '</a></li>';
                 endwhile;
                 wp_reset_query();
                 echo '</ul>';
             endif;
             ?>
-
             <ul class="col-2">
                 <?php
                 $args = array(
@@ -94,7 +107,6 @@ function be_home_loop() {
     </div><!-- .content-right -->
     <?php
 }
-
 genesis();
 ?>
 
