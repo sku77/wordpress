@@ -1,4 +1,6 @@
 <?php
+// Register Custom Navigation Walker
+require_once('wp_bootstrap_navwalker.php');
 
 // Add RSS links to <head> section
 automatic_feed_links();
@@ -41,4 +43,5 @@ function replace_excerpt($content) {
 }
 
 add_filter('the_excerpt', 'replace_excerpt');
+
 ?>
