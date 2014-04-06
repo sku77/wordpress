@@ -1,8 +1,4 @@
 <?php
-
-// Register Custom Navigation Walker
-require_once('wp_bootstrap_navwalker.php');
-
 // Add RSS links to <head> section
 automatic_feed_links();
 
@@ -184,9 +180,7 @@ function wpbeginner_numeric_posts_nav() {
     echo '</ul></div>' . "\n";
 }
 
-add_action('after_setup_theme', 'register_my_menus');
-
-register_nav_menus(array(
-    'primary' => __('Primary Menu', 'THEMENAME'),
-));
+register_nav_menus( array(
+    'primary' => __( 'Primary Menu', 'blanktemplate' ),
+) );
 ?>
