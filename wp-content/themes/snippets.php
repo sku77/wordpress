@@ -123,6 +123,7 @@ $wp_query->query($args);
 
 Pagination function.php 
 <?php
+
 function wpbeginner_numeric_posts_nav() {
 
     if (is_singular()) {
@@ -201,7 +202,8 @@ function wpbeginner_numeric_posts_nav() {
 
 Get the current terms from the main loop variable
 
-<?php $terms = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy')); 
+<?php
+$terms = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
 
 array('tax_query' => array(
         array(
@@ -209,8 +211,8 @@ array('tax_query' => array(
             'field' => 'id',
             'terms' => $terms->term_id // Where term_id of Term 1 is "1".
         )
-    ));
-        ?>
+        ));
+?>
 
 Search query
 <?php
@@ -236,14 +238,14 @@ $wp_query->query($arg);
 ?>
 
 Theme Style Header
-<?php /*   
-themes Name: Prestige
-themes URI: http://www.exoticcarrentalorlando.com/
-Description: WP themes for ECR Orlando
-Author: ConstantClick.Com
-Author URI: http://www.constantclick.com
-Version: Beta
-*/
+<?php /*
+  themes Name: Prestige
+  themes URI: http://www.exoticcarrentalorlando.com/
+  Description: WP themes for ECR Orlando
+  Author: ConstantClick.Com
+  Author URI: http://www.constantclick.com
+  Version: Beta
+ */
 ?>
 
 for page template header
@@ -264,30 +266,29 @@ for posts template header
 Nav Menu 
 Arguments
 
-    <?php
+<?php
 $defaults = array(
-	'theme_location'  => '',
-	'menu'            => '',
-	'container'       => 'div',
-	'container_class' => '',
-	'container_id'    => '',
-	'menu_class'      => 'menu',
-	'menu_id'         => '',
-	'echo'            => true,
-	'fallback_cb'     => 'wp_page_menu',
-	'before'          => '',
-	'after'           => '',
-	'link_before'     => '',
-	'link_after'      => '',
-	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-	'depth'           => 0,
-	'walker'          => ''
+    'theme_location' => '',
+    'menu' => '',
+    'container' => 'div',
+    'container_class' => '',
+    'container_id' => '',
+    'menu_class' => 'menu',
+    'menu_id' => '',
+    'echo' => true,
+    'fallback_cb' => 'wp_page_menu',
+    'before' => '',
+    'after' => '',
+    'link_before' => '',
+    'link_after' => '',
+    'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+    'depth' => 0,
+    'walker' => ''
 );
 
-wp_nav_menu( $defaults );
+wp_nav_menu($defaults);
 
-if ( has_nav_menu( 'primary-menu' ) ) { /* if menu location 'primary-menu' exists then use custom menu */
-      wp_nav_menu( array( 'theme_location' => 'primary-menu') ); 
+if (has_nav_menu('primary-menu')) { /* if menu location 'primary-menu' exists then use custom menu */
+    wp_nav_menu(array('theme_location' => 'primary-menu'));
 }
-
 ?>
